@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import BlogIntro from './components/BlogIntro';
 import TableOfContents from './components/TableOfContents';
 import HustleCard from './components/HustleCard';
+import AdBanner from './components/AdBanner';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import { sideHustles } from './data/blogData';
@@ -18,11 +19,13 @@ export default function App() {
       <TableOfContents />
 
       {sideHustles.map((hustle, index) => (
-        <HustleCard
-          key={hustle.id}
-          hustle={hustle}
-          isReversed={index % 2 !== 0}
-        />
+        <div key={hustle.id}>
+          <HustleCard
+            hustle={hustle}
+            isReversed={index % 2 !== 0}
+          />
+          <AdBanner />
+        </div>
       ))}
 
       <CallToAction />
