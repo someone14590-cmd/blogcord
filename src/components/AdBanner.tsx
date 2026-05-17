@@ -1,13 +1,28 @@
 import { useEffect } from 'react';
 
 export default function AdBanner() {
+  const isLocalhost =
+    typeof window !== 'undefined' &&
+    ['localhost', '127.0.0.1'].includes(window.location.hostname);
+
   useEffect(() => {
+    if (isLocalhost || typeof window === 'undefined') {
+      return;
+    }
+
     try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      const ads = (window as any).adsbygoogle;
+      if (Array.isArray(ads)) {
+        ads.push({});
+      }
     } catch {
       // Ignore ad push errors during local/dev rendering.
     }
-  }, []);
+  }, [isLocalhost]);
+
+  if (isLocalhost) {
+    return null;
+  }
 
   return (
     <div className="my-16 flex justify-center px-4">
