@@ -22,9 +22,11 @@ export default function App() {
         <div key={hustle.id}>
           <HustleCard
             hustle={hustle}
-            isReversed={index % 2 !== 0}
+          isReversed={index % 2 !== 0}
           />
-          <AdBanner />
+
+          {/* Show ad after every 2 cards */}
+          {index % 2 === 1 && <AdBanner />}
         </div>
       ))}
 
